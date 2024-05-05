@@ -12,7 +12,7 @@ import {
   PaginateOptions,
   PaginatedResult,
   paginator,
-} from 'src/common/utils/paginator';
+} from '../common/utils/paginator';
 
 const paginate: PaginateFn = paginator({ perPage: 5 });
 

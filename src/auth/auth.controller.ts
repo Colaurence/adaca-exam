@@ -12,10 +12,8 @@ export class AuthController {
     @Body() loginDto: LoginDto,
   ): Promise<{ user: User; token: string }> {
     const user = await this.authService.validateUser(loginDto);
-    const { user: loggedInUser, token } = await this.authService.generateToken(
-      user,
-      process.env.JWT_SECRET,
-    );
+    const { user: loggedInUser, token } =
+      await this.authService.generateToken(user);
     return { user: loggedInUser, token };
   }
 }

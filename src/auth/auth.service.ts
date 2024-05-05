@@ -4,7 +4,7 @@ import { User } from '.prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import { LoginDto } from './dto/login.dto';
 import * as bcrypt from 'bcryptjs';
-import { userTransformer } from 'src/users/transformer/user.transformer';
+import { userTransformer } from '../users/transformer/user.transformer';
 
 @Injectable()
 export class AuthService {
@@ -28,12 +28,11 @@ export class AuthService {
     return user;
   }
 
-  async generateToken(
-    user: User,
-    jwtSecret: string,
-  ): Promise<{ user: User; token: string }> {
+  async generateToken(user: User): Promise<{ user: User; token: string }> {
     const payload = { username: user.username, role: user.role, sub: user.id };
-    const token = this.jwtService.sign(payload, { secret: jwtSecret });
+    const token = this.jwtService.sign(payload, {
+      secret: process.env.JWT_SECRET,
+    });
     const transformedUser = await userTransformer(user);
     return { user: transformedUser, token };
   }

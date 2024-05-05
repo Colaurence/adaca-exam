@@ -15,8 +15,8 @@ import { Class } from '.prisma/client';
 import { ClassService } from './class.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { CreateClassDto, UpdateClassDto } from './dto/class.dto';
-import { extractUserRole } from 'src/common/utils/jwt.utils';
-import { PaginateOptions, PaginatedResult } from 'src/common/utils/paginator';
+import { extractUserRole } from '../common/utils/jwt.utils';
+import { PaginateOptions, PaginatedResult } from '../common/utils/paginator';
 
 @Controller('api/v1/classes')
 export class ClassController {
